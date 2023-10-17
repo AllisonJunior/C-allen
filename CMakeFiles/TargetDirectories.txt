@@ -1,3 +1,0 @@
-C:/Users/Vanilma/Desktop/callen/CMakeFiles/runnable.dir
-C:/Users/Vanilma/Desktop/callen/CMakeFiles/edit_cache.dir
-C:/Users/Vanilma/Desktop/callen/CMakeFiles/rebuild_cache.dir

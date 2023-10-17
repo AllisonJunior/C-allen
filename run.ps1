@@ -17,7 +17,15 @@ if ($action -eq "compile")
 # Commitar Para o Github #
 elseif ( $action -eq "commit" -and $msg -ne $null ) 
 {
-    Write-Output "Fazendo commit com a mensagem: $msg"
+    Write-Output "* Fazendo o commit..."
+
+    # Limpeza #
+    Remove-Item -Path "CMakeFiles" -Recurse
+    Remove-Item -Path "cmake_install.cmake"
+    Remove-Item -Path "CMakeCache.txt"
+    Remove-Item -Path "Makefile"
+    # Limpeza # 
+
     git init
     git add .
     git commit -m $msg
