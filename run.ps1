@@ -6,35 +6,53 @@ param
      [string] $msg
 )
 
-# Compilar o programa #
-if ($action -eq "compile") 
+
+
+# COMPILAÇÃO DO PROGRAMA #
+if ( $action -eq "compile" -or $action -eq "c" -or $action -eq "C" ) 
 {
-    cmake -G "MinGW Makefiles" .
-    cmake --build .
-    .\bin\runnable.exe
+  cmake -G "MinGW Makefiles" .
+  cmake --build .
+  .\bin\runnable.exe
 }
 
-# Commitar Para o Github #
+
+
+# LIMPEZA DE ARQUIVOS DESNECESSÁRIOS #
+elseif ( $action -eq "clear" )
+{
+      Write-Output "* Limpando Arquivos Desnecessários..."
+      Remove-Item -Path "CMakeFiles" -Recurse
+      Remove-Item -Path "cmake_install.cmake"
+      Remove-Item -Path "CMakeCache.txt"
+      Remove-Item -Path "Makefile"
+}
+
+
+
+# COMMIT PARA O GITHUB #
 elseif ( $action -eq "commit" -and $msg -ne $null ) 
 {
-    Write-Output "* Fazendo o commit..."
+      Write-Output "* Limpando Arquivos Desnecessários..."
 
-    # Limpeza #
-    Remove-Item -Path "CMakeFiles" -Recurse
-    Remove-Item -Path "cmake_install.cmake"
-    Remove-Item -Path "CMakeCache.txt"
-    Remove-Item -Path "Makefile"
-    # Limpeza # 
+      Remove-Item -Path "CMakeFiles" -Recurse
+      Remove-Item -Path "cmake_install.cmake"
+      Remove-Item -Path "CMakeCache.txt"
+      Remove-Item -Path "Makefile" 
 
-    git init
-    git add .
-    git commit -m $msg
-    git branch -M main
-    git remote add origin https://github.com/AllisonJunior/C-allen.git
-    git push -u origin main
+      Write-Output "* Fazendo o commit..."
+      git init
+      git add .
+      git commit -m $msg
+      git branch -M main
+      git remote add origin https://github.com/AllisonJunior/C-allen.git
+      git push -u origin main
 }
 
+
+
+# ERRO NA PASSAGEM DE PARÂMETROS #
 else 
 {
-    Write-Output "Opção inválida. Use -compile, -clear ou -commit 'Mensagem de Commit'."
+    Write-Output "Insira algum parâmetro válido."
 }
