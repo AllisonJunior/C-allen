@@ -33,14 +33,15 @@ elseif ( $action -eq "clear" )
 # COMMIT PARA O GITHUB #
 elseif ( $action -eq "commit" -and $msg -ne $null ) 
 {
-      # Verifica se os arquivos existem antes de tentar removê-los
-      if ( Test-Path -Path "CMakeFiles" -or Test-Path -Path "cmake_install.cmake" -or Test-Path -Path "CMakeCache.txt" -or Test-Path -Path "Makefile" ) 
+      # Lista de arquivos que serão verificados e removidos se existirem
+      $arquivos = @("CMakeFiles", "cmake_install.cmake", "CMakeCache.txt", "Makefile")
+      $arquivosParaRemover = $arquivos | Where-Object { Test-Path -Path $_ }
+
+      # Verifica se há arquivos para remover
+      if ( $arquivosParaRemover.Count -gt 0 ) 
       {
-        Write-Output "* Os arquivos estão sendo deletados..."
-        Remove-Item -Path "CMakeFiles" -Recurse -Force
-        Remove-Item -Path "cmake_install.cmake" -Force
-        Remove-Item -Path "CMakeCache.txt" -Force
-        Remove-Item -Path "Makefile" -Force
+        Write-Output "* Excluíndo os arquivos..."
+        Remove-Item -Path $arquivosParaRemover -Recurse -Force
       }
       else 
       {
