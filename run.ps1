@@ -11,6 +11,7 @@ param
 # COMPILAÇÃO DO PROGRAMA #
 if ( $action -eq "compile" -or $action -eq "c" -or $action -eq "C" ) 
 {
+  Write-Output "* Compilando e rodando a aplicação..."  
   cmake -G "MinGW Makefiles" .
   cmake --build .
   .\bin\runnable.exe

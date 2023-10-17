@@ -2,22 +2,26 @@ cmake_minimum_required ( VERSION 3.5 )
 
 project ( allen_v2 VERSION 1.0 ) 
 
-include_directories ( allen_lib )
+include_directories ( include )
 
 set ( SOURCES
              # ALLEN #
-             allen_lib/allen.h             
+             include/allen.h             
 
              # INPUT #
-             allen_lib/allen/input.h 
+             include/allen/input.h 
 
              # PRINT #
-             allen_lib/allen/print.h
+             include/allen/print.h
+             include/impel/print/int.c
+             include/impel/print/float.c
+             include/impel/print/double.c
+             include/impel/print/char.c
 
              # SYSTEM #
-             allen_lib/allen/system.h
-             allen_lib/impel/system/sys.c
-             
+             include/allen/system.h
+             include/impel/system/sys.c
+
              # Your project files here #
              src/main.c )
 

@@ -1,10 +1,9 @@
-# include <stdio.h>
-# include <stdlib.h>
-# include <allen/system.h>
+# include <allen/print.h>
 
 int main ( void )
-{
-   printf ( "Acentuação\n" );
-   setLanguage ( DEFAULT_LANGUAGE );
-   printf ( "Acentuação\n" ); 
-}
+{ 
+   int barray [] [ 3 ] = { { 1 , 2 , 3 } , { 4 , 5 , 6 } };
+   int novo [] [2] = { 0 };
+
+   put_int_barray ( 2 , 3 , barray );
+}  
