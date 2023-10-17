@@ -35,7 +35,7 @@ elseif ( $action -eq "clear" )
 elseif ( $action -eq "commit" -and $msg -ne $null ) 
 {
       # Lista de arquivos que serão verificados e removidos se existirem
-      $arquivos = @("CMakeFiles", "cmake_install.cmake", "CMakeCache.txt", "Makefile")
+      $arquivos = @("CMakeFiles", "cmake_install.cmake", "CMakeCache.txt", "Makefile" , ".vscode")
       $arquivosParaRemover = $arquivos | Where-Object { Test-Path -Path $_ }
 
       # Verifica se há arquivos para remover
