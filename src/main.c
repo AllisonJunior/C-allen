@@ -1,9 +1,16 @@
-# include <allen/print.h>
+# include <stdio.h>
+# include <stdlib.h>
+
+int array_size ( int * array ) 
+{
+   int element = sizeof ( array [ 0 ] );
+   int total = sizeof ( array [] );
+   return total / element;
+}
 
 int main ( void )
 { 
-   int barray [] [ 3 ] = { { 1 , 2 , 3 } , { 4 , 5 , 6 } };
-   int novo [] [2] = { 0 };
-
-   put_int_barray ( 2 , 3 , barray );
+   int array [] = { 10 , 20 , 30 , 40 , 50 , 60 , 90 };
+   int tamanho = array_size ( array );
+   printf("O tamanho do array é %d.\n", tamanho);
 }  
