@@ -22,6 +22,10 @@ set ( SOURCES
              include/allen/system.h
              include/impel/system/sys.c
 
+             # ARRAY #
+             include/allen/arrays.h
+             include/impel/arrays/int_array.c
+
              # Your project files here #
              src/main.c )
 
