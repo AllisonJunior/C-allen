@@ -17,7 +17,7 @@ void put_int ( const int int_var );
 // @param1: Receives a int array to print on the console 
 // @param2: Receives a int value to set the array size
 // ===================================================== 
-void put_int_array ( const int * int_array_var , const int array_size );
+void put_int_array ( const int array_size , const int * int_array_var );
 
 // =====================================================
 // Func: Prints a bidimensional int array ( static or dinamic ) on the console
@@ -48,7 +48,6 @@ void put_char ( const char char_var );
 //          char will be printed
 // ===================================================== 
 void put_chars ( const char char_var , const int times_loop );
-
 
 
 

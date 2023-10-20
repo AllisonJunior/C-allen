@@ -14,7 +14,7 @@ void put_int ( const int int_var )
 
 
 // Prints a list ( 1 , 2 , 3 ... ) of the int array on the console //
-void put_int_array ( const int * int_array_var , const int array_size )
+void put_int_array ( const int array_size , const int * int_array_var )
 {
     for ( int kaj = 0 ; kaj < array_size ; kaj ++ )
     {

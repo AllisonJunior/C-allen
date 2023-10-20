@@ -13,6 +13,5 @@ typedef struct
 IntArray;
 
 // 
-
 void initArray ( IntArray * int_array , int size );
 void printArray ( IntArray * int_array );
