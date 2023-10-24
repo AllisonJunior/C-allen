@@ -1,3 +1,3 @@
-# ifndef _ALLEN_MAIN_
-# define _ALLEN_MAIN_
+# ifndef _ALLEN_
+# define _ALLEN_
 # endif

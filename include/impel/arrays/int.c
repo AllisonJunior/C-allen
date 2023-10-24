@@ -1,7 +1,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-# include "../../allen/arrays.h"
+# include "../../allen/array.h"
 
 void initArray ( IntArray * int_array , int size )
 {   

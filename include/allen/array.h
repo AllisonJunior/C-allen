@@ -12,6 +12,16 @@ typedef struct
 }
 IntArray;
 
+// array_int
+// array_float
+// array_char
+// array_double
+// array_string
+
+// barray_int
+// barray_float
+
+
 // 
 void initArray ( IntArray * int_array , int size );
 void printArray ( IntArray * int_array );
