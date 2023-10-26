@@ -1,0 +1,3 @@
+/mnt/c/Users/Vanilma/Desktop/callen/linux/CMakeFiles/runnable.dir
+/mnt/c/Users/Vanilma/Desktop/callen/linux/CMakeFiles/edit_cache.dir
+/mnt/c/Users/Vanilma/Desktop/callen/linux/CMakeFiles/rebuild_cache.dir
