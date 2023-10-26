@@ -50,12 +50,7 @@ elseif ( $action -eq "commit" -and $msg -ne $null )
       }
 
       Write-Output "* Adicionando arquivos ao commit..."
-      git add run.ps1
-      git add README.MD
-      git add CMakeLists.txt
-
-      git add src .
-      git add include .
+      git add .
 
       Write-Output "* Fazendo o commit..."
       git commit -m $msg
