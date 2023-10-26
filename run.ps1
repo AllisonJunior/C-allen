@@ -56,7 +56,6 @@ elseif ( $action -eq "commit" -and $msg -ne $null )
 
       git add src .
       git add include .
-      git add bin .
 
       Write-Output "* Fazendo o commit..."
       git commit -m $msg
