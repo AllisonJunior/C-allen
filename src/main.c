@@ -2,5 +2,5 @@
 
 int main ( int argc , char * argv [] )
 {  
-   createMessageBox (); 
+   createMessageBox ( "janela" , "main" ) ; 
 }    
