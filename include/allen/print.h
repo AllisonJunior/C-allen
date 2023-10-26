@@ -1,5 +1,5 @@
-# ifndef _ALLEN_HEADER_FOR_PRINT_EASY_CONTROL_
-# define _ALLEN_HEADER_FOR_PRINT_EASY_CONTROL_
+# ifndef _ALLEN_PRINT_
+# define _ALLEN_PRINT_
 # endif
 
 // ------------------------------------------------------------------------------------------------
@@ -59,6 +59,25 @@ void put_char ( const char char_var , const signed int times_loop );
 // ===================================================== 
 void put_float ( const float float_var , const signed int commas_howmany );
 
+// =====================================================
+// Func: Prints a float array ( static or dinamic ) on the console
+// @param1: Receives a int value to set how many commas the 
+//          print will have
+// @param2: Receives a int value to set the array size 
+// @param3: Receives a float array to be printed on the console
+// ===================================================== 
+void put_floatArray ( const signed int commas_howmany , const signed int array_size , const float * restrict float_array );
+
+// =====================================================
+// Func: Prints a bidimensional float array ( static or dinamic ) on the console
+// @param1: Receives a int value to set how many commas the 
+//          print will have
+// @param2: Receives a int value to set how many lines exists on the array
+// @param3: Receives a int value to set how many cols exists on the array
+// @param4: Receives a bidimensional float array to be printed on the console
+// ===================================================== 
+void put_floatBarray ( const signed int commas_howmany , const signed int array_lines , const signed int array_cols , const float float_barray [ array_lines ] [ array_cols ] );
+
 
 
 
@@ -74,6 +93,25 @@ void put_float ( const float float_var , const signed int commas_howmany );
 //          print will have
 // ===================================================== 
 void put_double ( const double double_var , const signed int commas_howmany );
+
+// =====================================================
+// Func: Prints a double array ( static or dinamic ) on the console
+// @param1: Receives a int value to set how many commas the 
+//          print will have
+// @param2: Receives a int value to set the array size 
+// @param3: Receives a double array to be printed on the console
+// ===================================================== 
+void put_doubleArray ( const signed int commas_howmany , const signed int array_size , const double * restrict double_array );
+
+// =====================================================
+// Func: Prints a bidimensional double array ( static or dinamic ) on the console
+// @param1: Receives a int value to set how many commas the 
+//          print will have
+// @param2: Receives a int value to set how many lines exists on the array
+// @param3: Receives a int value to set how many cols exists on the array
+// @param4: Receives a bidimensional double array to be printed on the console
+// ===================================================== 
+void put_doubleBarray ( const signed int commas_howmany , const signed int array_lines , const signed int array_cols , const double double_barray [ array_lines ] [ array_cols ] );
 
 
 

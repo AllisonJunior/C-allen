@@ -35,7 +35,7 @@ elseif ( $action -eq "clear" )
 elseif ( $action -eq "commit" -and $msg -ne $null ) 
 {
       # Lista de arquivos que serão verificados e removidos se existirem
-      $arquivos = @("CMakeFiles", "cmake_install.cmake", "CMakeCache.txt", "Makefile" , ".vscode")
+      $arquivos = @("CMakeFiles", "cmake_install.cmake", "CMakeCache.txt", "Makefile" )
       $arquivosParaRemover = $arquivos | Where-Object { Test-Path -Path $_ }
 
       # Verifica se há arquivos para remover
@@ -49,14 +49,22 @@ elseif ( $action -eq "commit" -and $msg -ne $null )
         Write-Output "* Os arquivos não existem. Nenhuma ação necessária."
       }
 
-      Write-Output "* Fazendo o commit..."
-      git init
+      Write-Output "* Adicionando arquivos ao commit..."
       git add .
+
+      Write-Output "* Fazendo o commit..."
       git commit -m $msg
-      git branch -M main
+
+      Write-Output "* Removendo controle remoto existente (se houver)..."
+      git remote remove origin
+
+      Write-Output "* Adicionando controle remoto..."
       git remote add origin https://github.com/AllisonJunior/C-allen.git
+
+      Write-Output "* Pushing para o repositório remoto..."
       git push -u origin main
 }
+
 
 
 

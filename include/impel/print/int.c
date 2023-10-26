@@ -33,6 +33,7 @@ void put_intBarray ( const int array_lines , const int array_cols , const int in
        for ( int jak = 0 ; jak < array_cols ; jak ++ )
        {
           printf ( "%d" , int_barray [ kaj ] [ jak ] );
+          
           if ( jak != array_cols - 1 || kaj != array_lines - 1 )
             printf (" ");
        }

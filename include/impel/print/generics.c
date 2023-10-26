@@ -9,6 +9,7 @@
 
 
 
+# if defined (_WIN32) || defined (_WIN64)
 
 // Prints a formated string based on the second optional argument
 void putf ( const char * restrict string_text , ... )
@@ -98,6 +99,7 @@ void putf ( const char * restrict string_text , ... )
     printf ( "%s" , TEXT );
 }
 
+# endif
 
 
 // Prints on the console '\n' characters the n designed times // 
