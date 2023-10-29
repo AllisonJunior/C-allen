@@ -1,40 +1,51 @@
-# include <stdio.h>
+/*
+LICENSE
+*/
+
+
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= //
 
 # include "../../allen/print.h"
+# include "../../allen.h"
+
+/* =============================================================================================== */
+
+# include <stdio.h>
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= //
 
 
 
-
-
-// Prints a formated double value on the console //
-void put_double ( const double double_var , int commas_howmany )
+// PRINTS A FORMATED DOUBLE VALUE ON THE CONSOLE // 
+void putDouble ( const double _value , const unsigned int _commas )
 {
-    printf ( "%.*lf" , commas_howmany , double_var );
+    printf ( "%.*lf" , _commas , _value );
 }
 
 
-// Prints a list ( 1 , 2 , 3 , 4 ... ) of the double array on the console //
-void put_doubleArray ( const signed int commas_howmany , const signed int array_size , const double * restrict double_array )
+// PRINTS A DOUBLE ARRAY ON THE CONSOLE //
+void putDouble_array ( const unsigned int _commas , const unsigned int _size , const double * _array )
 {
-    for ( int kaj = 0 ; kaj < array_size ; kaj ++ )
+    for ( uint kaj = 0 ; kaj < _size ; kaj ++ )
     {
-       printf ( "%.*lf" , commas_howmany , double_array [ kaj ] );
+       printf ( "%.*lf" , _commas , _array [ kaj ] );
        
-       if ( kaj < array_size - 1 )
-         printf ( " " );
+       //* If the _array [ kaj ] isn't the last, so print ' '
+       if ( kaj < _size - 1 ) printf ( " " );
     }
 }
 
 
-// Prints a list ( 1 , 2 , 3 ... ) of a bidimensional double array //
-void put_doubleBarray ( const signed int commas_howmany , const signed int array_lines , const signed int array_cols , const double double_barray [ array_lines ] [ array_cols ] )
+// PRINTS A DOUBLE BIDIMENSIONAL ARRAY ON THE CONSOLE //
+void putDouble_barray ( const unsigned int _commas , const unsigned int _lines , const unsigned int _cols , const double _barray [ _lines ] [ _cols ] )
 {
-    for ( int kaj = 0 ; kaj < array_lines ; kaj ++ )
-       for ( int jak = 0 ; jak < array_cols ; jak ++ )
-       {
-          printf ( "%.*lf" , commas_howmany , double_barray [ kaj ] [ jak ] );
-
-          if ( jak != array_cols - 1 || kaj != array_lines - 1 )
-            printf ( " " );
-       }
+    for ( uint kaj = 0 ; kaj < _lines ; kaj ++ )
+    for ( uint jak = 0 ; jak < _cols  ; jak ++ )
+    {
+       printf ( "%.*lf" , _commas , _barray [ kaj ] [ jak ] );
+        
+       //* If the _barray [ kaj ] [ jak ] isn't the last, so print ' '  
+       if ( jak != _cols - 1 || kaj != _lines - 1 ) printf ( " " );
+    }
 }

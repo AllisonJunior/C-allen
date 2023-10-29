@@ -1,40 +1,51 @@
-# include <stdio.h>
+/*
+LICENSE
+*/
+
+
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= //
 
 # include "../../allen/print.h"
+# include "../../allen.h"
+
+/* =============================================================================================== */
+
+# include <stdio.h>
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= //
 
 
 
-
-
-// Prints a formated float value on the console //
-void put_float ( const float float_var , const int commas_howmany )
+// PRINTS A FORMATED FLOAT VALUE ON THE CONSOLE // 
+void putFloat ( const float _value , const unsigned int _commas )
 {
-    printf ( "%.*f" , commas_howmany , float_var );
+    printf ( "%.*f" , _commas , _value );
 }
 
 
-// Prints a list ( 1 , 2 , 3 , 4 ... ) of the float array on the console //
-void put_floatArray ( const signed int commas_howmany , const signed int array_size , const float * restrict float_array )
+// PRINTS A FLOAT ARRAY ON THE CONSOLE //
+void putFloat_array ( const unsigned int _commas , const unsigned int _size , const float * _array )
 {
-    for ( int kaj = 0 ; kaj < array_size ; kaj ++ )
+    for ( uint kaj = 0 ; kaj < _size ; kaj ++ )
     {
-       printf ( "%.*f" , commas_howmany , float_array [ kaj ] );
+       printf ( "%.*f" , _commas , _array [ kaj ] );
        
-       if ( kaj < array_size - 1 )
-         printf ( " " );
+       //* If the _array [ kaj ] isn't the last, so print ' '
+       if ( kaj < _size - 1 ) printf ( " " );
     }
 }
 
 
-// Prints a list ( 1 , 2 , 3 ... ) of a bidimensional float array //
-void put_floatBarray ( const signed int commas_howmany , const signed int array_lines , const signed int array_cols , const float float_barray [ array_lines ] [ array_cols ] )
+// PRINTS A FLOAT BIDIMENSIONAL ARRAY ON THE CONSOLE //
+void putFloat_barray ( const unsigned int _commas , const unsigned int _lines , const unsigned int _cols , const float _barray [ _lines ] [ _cols ] )
 {
-    for ( int kaj = 0 ; kaj < array_lines ; kaj ++ )
-       for ( int jak = 0 ; jak < array_cols ; jak ++ )
-       {
-          printf ( "%.*f" , commas_howmany , float_barray [ kaj ] [ jak ] );
-
-          if ( jak != array_cols - 1 || kaj != array_lines - 1 )
-            printf ( " " );
-       }
+    for ( uint kaj = 0 ; kaj < _lines ; kaj ++ )
+    for ( uint jak = 0 ; jak < _cols  ; jak ++ )
+    {
+       printf ( "%.*f" , _commas , _barray [ kaj ] [ jak ] );
+        
+       //* If the _barray [ kaj ] [ jak ] isn't the last, so print ' '  
+       if ( jak != _cols - 1 || kaj != _lines - 1 ) printf ( " " );
+    }
 }

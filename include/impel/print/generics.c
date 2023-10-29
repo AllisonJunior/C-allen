@@ -1,15 +1,33 @@
+/*
+LICENSE
+*/
+
+
+
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= //
+
+# include "../../allen/print.h"
+# include "../../allen.h"
+
+/* =============================================================================================== */
+
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdarg.h>
 # include <string.h>
 # include <ctype.h>
 
-# include "../../allen/print.h"
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= //
 
 
 
+// Prints on the console ' ' characters the n designed times // 
+void putspaces ( const signed int write_times )
+{
+    for ( int kaj = 0 ; kaj < write_times ; kaj ++ )
+       printf ( " " );
+}
 
-# if defined (_WIN32) || defined (_WIN64)
 
 // Prints a formated string based on the second optional argument
 void putf ( const char * restrict string_text , ... )
@@ -44,7 +62,7 @@ void putf ( const char * restrict string_text , ... )
     
     if ( ( strstr ( TEXT_BUFFER , "format" ) != NULL ) && ( strstr ( TEXT_BUFFER , "::" ) != NULL ) )
     {
-      if ( strstr ( TEXT_BUFFER , "password" ) != NULL )
+      if ( strstr ( TEXT_BUFFER , "hide" ) != NULL )
       {
         char * ini = strstr ( TEXT_BUFFER , "(" );  
         
@@ -99,8 +117,6 @@ void putf ( const char * restrict string_text , ... )
     printf ( "%s" , TEXT );
 }
 
-# endif
-
 
 // Prints on the console '\n' characters the n designed times // 
 void putlines ( const signed int write_times )
@@ -110,9 +126,3 @@ void putlines ( const signed int write_times )
 }
 
 
-// Prints on the console ' ' characters the n designed times // 
-void putspaces ( const signed int write_times )
-{
-    for ( int kaj = 0 ; kaj < write_times ; kaj ++ )
-       printf ( " " );
-}

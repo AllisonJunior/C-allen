@@ -37,7 +37,7 @@ void putInt_array ( const unsigned int _size , const signed int * _array )
 }
 
 
-// PRINTS A INT BIDIMENSIONAL ON THE CONSOLE //
+// PRINTS A INT BIDIMENSIONAL ARRAY ON THE CONSOLE //
 void putInt_barray ( const unsigned int _lines , const unsigned int _cols , const int _barray [ _lines ] [ _cols ] )
 {   
     for ( uint kaj = 0 ; kaj < _lines ; kaj ++ )

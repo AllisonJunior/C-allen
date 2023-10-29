@@ -61,7 +61,26 @@ void putInt_barray ( const unsigned int _lines , const unsigned int _cols , cons
 $*/
 void putChar ( const char _value , const unsigned int _times );
 
+/*
+>=================================================================================================================================================================================================<
+ Function Description: "Prints an char array to the console."
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ @param-1: A variable of type 'int' that will set the size of the array.
+ @param-2: A array of type 'char' that will have it's value printed on the console.
+>=================================================================================================================================================================================================< 
+$*/
+void putChar_array ( const unsigned int _size , const char * _array );
 
+/*
+>=================================================================================================================================================================================================<
+ Function Description: "Prints an bidimensional char array to the console."
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ @param-1: A variable of type 'int' that will set how many lines the b.array have.
+ @param-2: A variable of type 'int' that will set how many columns the b.array have.
+ @param-3: A bidimensional array of type 'char' that will have it's value printed on the console.
+>=================================================================================================================================================================================================< 
+$*/
+void putChar_barray ( const unsigned int _lines , const unsigned int _cols , const char _barray [ _lines ] [ _cols ] );
 
 
 
@@ -69,32 +88,38 @@ void putChar ( const char _value , const unsigned int _times );
 // float << ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-// =====================================================
-// Func: Prints a formated float value on the console ( commas )
-// @param1: Receives a float value to print on the console 
-// @param2: Receives a int value to set how many commas the 
-//          print will have
-// ===================================================== 
-void put_float ( const float float_var , const int commas_howmany );
+/*
+>=================================================================================================================================================================================================<
+ Function Description: "Prints an formated ( how many commas ) float value or variable to the console."
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ @param-1: A variable of type 'float' that will have it's value printed on the console.
+ @param-2: A variable of type 'int' that will set how many %.*f commas will be printed.
+>=================================================================================================================================================================================================< 
+$*/
+void putFloat ( const float _value , const unsigned int _commas );
 
-// =====================================================
-// Func: Prints a float array ( static or dinamic ) on the console
-// @param1: Receives a int value to set how many commas the 
-//          print will have
-// @param2: Receives a int value to set the array size 
-// @param3: Receives a float array to be printed on the console
-// ===================================================== 
-void put_floatArray ( const int commas_howmany , const int array_size , const float * restrict float_array );
+/*
+>=================================================================================================================================================================================================<
+ Function Description: "Prints an float array to the console."
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ @param-1: A variable of type 'int' that will set how many commas will be printed.
+ @param-2: A variable of type 'int' that will set the array size.
+ @param-3: A array of type 'float' that will have its values printed to the console.
+>=================================================================================================================================================================================================<
+$*/
+void putFloat_array ( const unsigned int _commas , const unsigned int _size , const float * _array );
 
-// =====================================================
-// Func: Prints a bidimensional float array ( static or dinamic ) on the console
-// @param1: Receives a int value to set how many commas the 
-//          print will have
-// @param2: Receives a int value to set how many lines exists on the array
-// @param3: Receives a int value to set how many cols exists on the array
-// @param4: Receives a bidimensional float array to be printed on the console
-// ===================================================== 
-void put_floatBarray ( const int commas_howmany , const int array_lines , const int array_cols , const float float_barray [ array_lines ] [ array_cols ] );
+/*
+>=================================================================================================================================================================================================<
+ Function Description: "Prints an double bidimensional array to the console."
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ @param-1: A variable of type 'int' that will set how many commas will be printed.
+ @param-2: A variable of type 'int' that will set how many lines the b.array have.
+ @param-3: A variable of type 'int' that will set how many columns the b.array have.
+ @param-4: A bidimensional array of type 'float' that will have its values printed to the console.
+>=================================================================================================================================================================================================<
+$*/
+void putFloat_barray ( const unsigned int _commas , const unsigned int _lines , const unsigned int _cols , const float _barray [ _lines ] [ _cols ] );
 
 
 
@@ -104,32 +129,38 @@ void put_floatBarray ( const int commas_howmany , const int array_lines , const 
 // double << --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-// =====================================================
-// Func: Prints a formated double value on the console ( commas )
-// @param1: Receives a double value to print on the console 
-// @param2: Receives a int value to set how many commas the 
-//          print will have
-// ===================================================== 
-void put_double ( const double double_var , const int commas_howmany );
+/*
+>=================================================================================================================================================================================================<
+ Function Description: "Prints an formated ( how many commas ) double value or variable to the console."
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ @param-1: A variable of type 'double' that will have it's value printed on the console.
+ @param-2: A variable of type 'int' that will set how many %.*f commas will be printed.
+>=================================================================================================================================================================================================< 
+$*/
+void putDouble ( const double _value , const unsigned int _commas );
 
-// =====================================================
-// Func: Prints a double array ( static or dinamic ) on the console
-// @param1: Receives a int value to set how many commas the 
-//          print will have
-// @param2: Receives a int value to set the array size 
-// @param3: Receives a double array to be printed on the console
-// ===================================================== 
-void put_doubleArray ( const int commas_howmany , const int array_size , const double * double_array );
+/*
+>=================================================================================================================================================================================================<
+ Function Description: "Prints an double array to the console."
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ @param-1: A variable of type 'int' that will set how many commas will be printed.
+ @param-2: A variable of type 'int' that will set the array size.
+ @param-3: A array of type 'double' that will have its values printed to the console.
+>=================================================================================================================================================================================================<
+$*/
+void putDouble_array ( const unsigned int _commas , const unsigned int _size , const double * _array );
 
-// =====================================================
-// Func: Prints a bidimensional double array ( static or dinamic ) on the console
-// @param1: Receives a int value to set how many commas the 
-//          print will have
-// @param2: Receives a int value to set how many lines exists on the array
-// @param3: Receives a int value to set how many cols exists on the array
-// @param4: Receives a bidimensional double array to be printed on the console
-// ===================================================== 
-void put_doubleBarray ( const int commas_howmany , const int array_lines , const int array_cols , const double double_barray [ array_lines ] [ array_cols ] );
+/*
+>=================================================================================================================================================================================================<
+ Function Description: "Prints an double bidimensional array to the console."
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ @param-1: A variable of type 'int' that will set how many commas will be printed.
+ @param-2: A variable of type 'int' that will set how many lines the b.array have.
+ @param-3: A variable of type 'int' that will set how many columns the b.array have.
+ @param-4: A bidimensional array of type 'double' that will have its values printed to the console.
+>=================================================================================================================================================================================================<
+$*/
+void putDouble_barray ( const unsigned int _commas , const unsigned int _lines , const unsigned int _cols , const double _barray [ _lines ] [ _cols ] );
 
 
 
@@ -139,27 +170,33 @@ void put_doubleBarray ( const int commas_howmany , const int array_lines , const
 // generics << ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-// =====================================================
-// Func: Prints a formated string based on the second optional
-//       argument
-// @param1: Receives a string text
-// @param2 <OPTIONAL>: Receives a format option ( string )
-// normal: [ inverted , uppercase , lowercase ]
-// format: [ format::password()() ]
-// =====================================================
-void putf ( const char * string_text , ... );
+/*
+>=================================================================================================================================================================================================<
+ Function Description: ""
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ @param-1: 
+>=================================================================================================================================================================================================<
+$*/
+void put_spaces ( const unsigned int _times );
 
-// =====================================================
-// Func: Prints on the console n '\n' characters
-// @param1: The amount of times that '\n' will be printed
-// ===================================================== 
-void putlines ( const int write_times );
+/*
+>=================================================================================================================================================================================================<
+ Function Description: ""
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ @param-1: 
+>=================================================================================================================================================================================================<
+$*/
+void put_lines ( const unsigned int _times );
 
-// =====================================================
-// Func: Prints on the console n ' ' characters
-// @param1: The amount of times that ' ' will be printed
-// ===================================================== 
-void putspaces ( const int write_times );
+/*
+>=================================================================================================================================================================================================<
+ Function Description: ""
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ @param-1: 
+>=================================================================================================================================================================================================<
+$*/
+void put_format ( const char * string_text , ... );
+void putf ( const char * restrict string_text , ... );
 
 
 
