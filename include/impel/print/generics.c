@@ -49,12 +49,13 @@ void putf ( const char * string_text , ... )
     char * TEXT_BUFFER = va_arg ( args , char * );
     char TEXT [ strlen ( string_text ) + 1 ];
     strcpy ( TEXT , string_text );
-    
+  
 
     // -------------------- FORMATING -------------------- //
+
+    int jak = 0;
     
-    if ( strstr ( TEXT_BUFFER , "inverted" ) != NULL )
-      strrev ( TEXT );
+    //if ( strstr ( TEXT_BUFFER , "inverted" ) != NULL )
     
     if ( strstr ( TEXT_BUFFER , "uppercase" ) != NULL )
     {

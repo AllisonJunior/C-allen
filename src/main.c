@@ -6,5 +6,5 @@
 
 int main ( int argc , char ** argv )
 {  
-   system ( "pause" ); 
+   putf ( "text" , "format::hide(e)(&)" );
 }     
