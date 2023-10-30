@@ -8,7 +8,7 @@ param
 
 
 
-# COMPILAÇÃO DO PROGRAMA #
+# COMPILAÇÃO E EXECUÇÃO DO PROGRAMA #
 if ( $action -eq "compile" -or $action -eq "c" -or $action -eq "C" ) 
 {
   Write-Output "* Compilando e rodando a aplicação..."  
@@ -23,6 +23,25 @@ if ( $action -eq "compile" -or $action -eq "c" -or $action -eq "C" )
   {
         .\bin\runnable.exe
   }
+
+}
+
+
+# COMPILAÇÃO DO PROGRAMA FORA DESSE CONSOLE  #
+elseif ( $action -eq "cout" ) 
+{
+      Write-Output "* Compilando e rodando a aplicação por fora..."  
+      cmake -G "MinGW Makefiles" .
+      cmake --build .
+  
+      if (-not [string]::IsNullOrWhiteSpace($msg)) 
+      {
+        Start-Process -FilePath ".\bin\runnable.exe" -ArgumentList $msg
+      } 
+      else 
+      {
+          Start-Process -FilePath ".\bin\runnable.exe"
+      }
 
 }
 
@@ -78,6 +97,12 @@ elseif ( $action -eq "commit" -and $msg -ne $null )
 
       Write-Output "* Pushing para o repositório remoto..."
       git push -u origin main
+}
+
+# ABRIR O GITHUB # 
+elseif ( $action -eq "github" )
+{
+      Start-Process "https://github.com/AllisonJunior/C-allen"
 }
 
 
