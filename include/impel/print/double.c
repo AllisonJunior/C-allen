@@ -18,14 +18,14 @@ LICENSE
 
 
 // PRINTS A FORMATED DOUBLE VALUE ON THE CONSOLE // 
-void putDouble ( const double _value , const unsigned int _commas )
+void putDouble ( const double _value , const int _commas )
 {
     printf ( "%.*lf" , _commas , _value );
 }
 
 
 // PRINTS A DOUBLE ARRAY ON THE CONSOLE //
-void putDouble_array ( const unsigned int _commas , const unsigned int _size , const double * _array )
+void putDouble_array ( const int _commas , const int _size , const double * _array )
 {
     for ( uint kaj = 0 ; kaj < _size ; kaj ++ )
     {
@@ -38,7 +38,7 @@ void putDouble_array ( const unsigned int _commas , const unsigned int _size , c
 
 
 // PRINTS A DOUBLE BIDIMENSIONAL ARRAY ON THE CONSOLE //
-void putDouble_barray ( const unsigned int _commas , const unsigned int _lines , const unsigned int _cols , const double _barray [ _lines ] [ _cols ] )
+void putDouble_barray ( const int _commas , const int _lines , const int _cols , const double _barray [ _lines ] [ _cols ] )
 {
     for ( uint kaj = 0 ; kaj < _lines ; kaj ++ )
     for ( uint jak = 0 ; jak < _cols  ; jak ++ )

@@ -18,7 +18,7 @@ LICENSE
 
 
 // PRINTS A CHAR VALUE ON THE CONSOLE 'n' TIMES //  
-void putChar ( const char _value , const unsigned int _times )
+void putChar ( const char _value , const int _times )
 {
     for ( uint kaj = 0 ; kaj < _times ; kaj ++ )
        printf ( "%c" , _value );
@@ -26,7 +26,7 @@ void putChar ( const char _value , const unsigned int _times )
 
 
 // PRINTS A CHAR ARRAY ON THE CONSOLE //
-void putChar_array ( const unsigned int _size , const char * _array )
+void putChar_array ( const int _size , const char * _array )
 {
     for ( uint kaj = 0 ; kaj < _size ; kaj ++ )
     {
@@ -39,7 +39,7 @@ void putChar_array ( const unsigned int _size , const char * _array )
 
 
 // PRINTS A BIDIMENSIONAL CHAR ARRAY ON THE CONSOLE //
-void putChar_barray ( const unsigned int _lines , const unsigned int _cols , const char _barray [ _lines ] [ _cols ] )
+void putChar_barray ( const int _lines , const int _cols , const char _barray [ _lines ] [ _cols ] )
 {
     for ( uint kaj = 0 ; kaj < _lines ; kaj ++ )
     for ( uint jak = 0 ; jak < _cols  ; jak ++ )

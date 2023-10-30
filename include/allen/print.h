@@ -20,7 +20,7 @@ LICENSE
  @param-1: A variable of type 'int' that will have its value printed to the console.
 >=================================================================================================================================================================================================<
 $*/
-void putInt ( const signed int _value );
+void putInt ( const int _value );
 
 /*
 >=================================================================================================================================================================================================<
@@ -30,7 +30,7 @@ void putInt ( const signed int _value );
  @param-2: A array of type 'int' that will have its values printed to the console.
 >=================================================================================================================================================================================================<
 $*/
-void putInt_array ( const unsigned int _size , const signed int * _array );
+void putInt_array ( const int _size , const int * _array );
 
 /*
 >=================================================================================================================================================================================================<
@@ -41,7 +41,7 @@ void putInt_array ( const unsigned int _size , const signed int * _array );
  @param-3: A bidimensional array of type 'int' that will have its values printed to the console.
 >=================================================================================================================================================================================================<
 $*/
-void putInt_barray ( const unsigned int _lines , const unsigned int _cols , const int _barray [ _lines ] [ _cols ] );
+void putInt_barray ( const int _lines , const int _cols , const int _barray [ _lines ] [ _cols ] );
 
 
 
@@ -59,7 +59,7 @@ void putInt_barray ( const unsigned int _lines , const unsigned int _cols , cons
  @param-2: A variable of type 'int' that will set how many times the variable defined before will be printed on the console.
 >=================================================================================================================================================================================================< 
 $*/
-void putChar ( const char _value , const unsigned int _times );
+void putChar ( const char _value , const int _times );
 
 /*
 >=================================================================================================================================================================================================<
@@ -69,7 +69,7 @@ void putChar ( const char _value , const unsigned int _times );
  @param-2: A array of type 'char' that will have it's value printed on the console.
 >=================================================================================================================================================================================================< 
 $*/
-void putChar_array ( const unsigned int _size , const char * _array );
+void putChar_array ( const int _size , const char * _array );
 
 /*
 >=================================================================================================================================================================================================<
@@ -80,7 +80,7 @@ void putChar_array ( const unsigned int _size , const char * _array );
  @param-3: A bidimensional array of type 'char' that will have it's value printed on the console.
 >=================================================================================================================================================================================================< 
 $*/
-void putChar_barray ( const unsigned int _lines , const unsigned int _cols , const char _barray [ _lines ] [ _cols ] );
+void putChar_barray ( const int _lines , const int _cols , const char _barray [ _lines ] [ _cols ] );
 
 
 
@@ -96,7 +96,7 @@ void putChar_barray ( const unsigned int _lines , const unsigned int _cols , con
  @param-2: A variable of type 'int' that will set how many %.*f commas will be printed.
 >=================================================================================================================================================================================================< 
 $*/
-void putFloat ( const float _value , const unsigned int _commas );
+void putFloat ( const float _value , const int _commas );
 
 /*
 >=================================================================================================================================================================================================<
@@ -107,7 +107,7 @@ void putFloat ( const float _value , const unsigned int _commas );
  @param-3: A array of type 'float' that will have its values printed to the console.
 >=================================================================================================================================================================================================<
 $*/
-void putFloat_array ( const unsigned int _commas , const unsigned int _size , const float * _array );
+void putFloat_array ( const int _commas , const int _size , const float * _array );
 
 /*
 >=================================================================================================================================================================================================<
@@ -119,7 +119,7 @@ void putFloat_array ( const unsigned int _commas , const unsigned int _size , co
  @param-4: A bidimensional array of type 'float' that will have its values printed to the console.
 >=================================================================================================================================================================================================<
 $*/
-void putFloat_barray ( const unsigned int _commas , const unsigned int _lines , const unsigned int _cols , const float _barray [ _lines ] [ _cols ] );
+void putFloat_barray ( const int _commas , const int _lines , const int _cols , const float _barray [ _lines ] [ _cols ] );
 
 
 
@@ -137,7 +137,7 @@ void putFloat_barray ( const unsigned int _commas , const unsigned int _lines , 
  @param-2: A variable of type 'int' that will set how many %.*f commas will be printed.
 >=================================================================================================================================================================================================< 
 $*/
-void putDouble ( const double _value , const unsigned int _commas );
+void putDouble ( const double _value , const int _commas );
 
 /*
 >=================================================================================================================================================================================================<
@@ -148,7 +148,7 @@ void putDouble ( const double _value , const unsigned int _commas );
  @param-3: A array of type 'double' that will have its values printed to the console.
 >=================================================================================================================================================================================================<
 $*/
-void putDouble_array ( const unsigned int _commas , const unsigned int _size , const double * _array );
+void putDouble_array ( const int _commas , const int _size , const double * _array );
 
 /*
 >=================================================================================================================================================================================================<
@@ -160,7 +160,7 @@ void putDouble_array ( const unsigned int _commas , const unsigned int _size , c
  @param-4: A bidimensional array of type 'double' that will have its values printed to the console.
 >=================================================================================================================================================================================================<
 $*/
-void putDouble_barray ( const unsigned int _commas , const unsigned int _lines , const unsigned int _cols , const double _barray [ _lines ] [ _cols ] );
+void putDouble_barray ( const int _commas , const int _lines , const int _cols , const double _barray [ _lines ] [ _cols ] );
 
 
 
@@ -172,12 +172,21 @@ void putDouble_barray ( const unsigned int _commas , const unsigned int _lines ,
 
 /*
 >=================================================================================================================================================================================================<
- Function Description: ""
+ Function Description: "Prints ' ' character n times on the console."
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
- @param-1: 
+ @param-1: Int value that will set how many ' ' will be printed on the console.
 >=================================================================================================================================================================================================<
 $*/
-void put_spaces ( const unsigned int _times );
+void put_spaces ( const int _times );
+
+/*
+>=================================================================================================================================================================================================<
+ Function Description: "Prints '\n' character n times on the console."
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ @param-1: Int value that will set how many '\n' will be printed on the console.
+>=================================================================================================================================================================================================<
+$*/
+void put_lines ( const int _times );
 
 /*
 >=================================================================================================================================================================================================<
@@ -186,17 +195,7 @@ void put_spaces ( const unsigned int _times );
  @param-1: 
 >=================================================================================================================================================================================================<
 $*/
-void put_lines ( const unsigned int _times );
-
-/*
->=================================================================================================================================================================================================<
- Function Description: ""
- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
- @param-1: 
->=================================================================================================================================================================================================<
-$*/
-void put_format ( const char * string_text , ... );
-void putf ( const char * restrict string_text , ... );
+// void putf ( const char * restrict string_text , ... );
 
 
 

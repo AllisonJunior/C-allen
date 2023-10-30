@@ -14,7 +14,16 @@ if ( $action -eq "compile" -or $action -eq "c" -or $action -eq "C" )
   Write-Output "* Compilando e rodando a aplicação..."  
   cmake -G "MinGW Makefiles" .
   cmake --build .
-  .\bin\runnable.exe
+  
+  if (-not [string]::IsNullOrWhiteSpace($msg)) 
+  {
+        .\bin\runnable.exe $msg
+  } 
+  else 
+  {
+        .\bin\runnable.exe
+  }
+
 }
 
 

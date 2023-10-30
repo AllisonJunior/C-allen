@@ -18,14 +18,14 @@ LICENSE
 
 
 // PRINTS A FORMATED FLOAT VALUE ON THE CONSOLE // 
-void putFloat ( const float _value , const unsigned int _commas )
+void putFloat ( const float _value , const int _commas )
 {
     printf ( "%.*f" , _commas , _value );
 }
 
 
 // PRINTS A FLOAT ARRAY ON THE CONSOLE //
-void putFloat_array ( const unsigned int _commas , const unsigned int _size , const float * _array )
+void putFloat_array ( const int _commas , const int _size , const float * _array )
 {
     for ( uint kaj = 0 ; kaj < _size ; kaj ++ )
     {
@@ -38,7 +38,7 @@ void putFloat_array ( const unsigned int _commas , const unsigned int _size , co
 
 
 // PRINTS A FLOAT BIDIMENSIONAL ARRAY ON THE CONSOLE //
-void putFloat_barray ( const unsigned int _commas , const unsigned int _lines , const unsigned int _cols , const float _barray [ _lines ] [ _cols ] )
+void putFloat_barray ( const int _commas , const int _lines , const int _cols , const float _barray [ _lines ] [ _cols ] )
 {
     for ( uint kaj = 0 ; kaj < _lines ; kaj ++ )
     for ( uint jak = 0 ; jak < _cols  ; jak ++ )

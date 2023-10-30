@@ -12,20 +12,22 @@ LICENSE
 /* =============================================================================================== */
 
 # include <stdio.h>
+# include <ctype.h>
+# include <stdlib.h>
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= //
 
 
 
 // PRINTS A INT VALUE ON THE CONSOLE //
-void putInt ( const signed int _value )
-{ 
+void putInt ( const int _value )
+{  
     printf ( "%d" , _value ); 
 }
 
 
 // PRINTS A INT ARRAY ON THE CONSOLE //
-void putInt_array ( const unsigned int _size , const signed int * _array )
+void putInt_array ( const int _size , const int * _array )
 {    
     for ( uint kaj = 0 ; kaj < _size ; kaj ++ )
     {  
@@ -38,7 +40,7 @@ void putInt_array ( const unsigned int _size , const signed int * _array )
 
 
 // PRINTS A INT BIDIMENSIONAL ARRAY ON THE CONSOLE //
-void putInt_barray ( const unsigned int _lines , const unsigned int _cols , const int _barray [ _lines ] [ _cols ] )
+void putInt_barray ( const int _lines , const int _cols , const int _barray [ _lines ] [ _cols ] )
 {   
     for ( uint kaj = 0 ; kaj < _lines ; kaj ++ )
     for ( uint jak = 0 ; jak < _cols  ; jak ++ )

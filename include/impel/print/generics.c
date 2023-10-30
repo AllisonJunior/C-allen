@@ -21,16 +21,26 @@ LICENSE
 
 
 
-// Prints on the console ' ' characters the n designed times // 
-void putspaces ( const signed int write_times )
+// PRINT ' ' CHARACTERS n TIMES ON THE CONSOLE // 
+void put_spaces ( const int _times )
+{   
+    //* Error handling
+    if ( _times > 0 ) 
+      for ( uint kaj = 0 ; kaj < _times ; kaj ++ ) printf ( " " );
+}
+
+
+// PRINT '\n' CHARACTERS n TIMES ON THE CONSOLE // 
+void put_lines ( const int _times )
 {
-    for ( int kaj = 0 ; kaj < write_times ; kaj ++ )
-       printf ( " " );
+    //* Error handling
+    if ( _times > 0 )
+      for ( uint kaj = 0 ; kaj < _times ; kaj ++ ) printf ( "\n" );
 }
 
 
 // Prints a formated string based on the second optional argument
-void putf ( const char * restrict string_text , ... )
+void putf ( const char * string_text , ... )
 {   
     va_list args;
     va_start ( args , string_text );
@@ -118,11 +128,5 @@ void putf ( const char * restrict string_text , ... )
 }
 
 
-// Prints on the console '\n' characters the n designed times // 
-void putlines ( const signed int write_times )
-{
-    for ( int kaj = 0 ; kaj < write_times ; kaj ++ )
-       printf ( "\n" );
-}
 
 

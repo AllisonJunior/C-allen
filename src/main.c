@@ -1,8 +1,9 @@
-# include <allen/print.h>
 # include <stdio.h>
+# include <stdlib.h>
+# include <assert.h>
+# include <ctype.h>
+# include <allen/print.h>
 
-# define BREAKL printf("\n");
-
-int main ( int argc , char * argv [] )
+int main ( int argc , char ** argv )
 {  
 }     
