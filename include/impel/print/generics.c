@@ -16,6 +16,10 @@ LICENSE
    {
     defined name  : "inc_for"
     implementation: "for ( int kaj = 0 ; kaj < size ; kaj ++ )"
+   }   
+   {
+    defined name  : "dbg_string"
+    implementation: "printf ( "%s" , <string> );"
    }
 */
 /* =============================================================================================== */
@@ -53,6 +57,12 @@ void put_format ( const char * _string , ... )
 {   
     va_list args;
     va_start ( args , _string );
+
+    char * handler = va_arg ( args , char * ); // dbg_string ( handler )
+
+    if ( strstr ( handler , "inverted" ) != NULL )
+      llen_InvertString ( _string );
+      
     
     va_end ( args );
 }

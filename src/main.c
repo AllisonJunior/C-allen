@@ -6,5 +6,5 @@
 
 int main ( int argc , char ** argv )
 {
-   putChar ( 220 , 2 ); 
+   put_format ( "Text" , "inverted" ); 
 }     

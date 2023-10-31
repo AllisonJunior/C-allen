@@ -9,12 +9,13 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 include_directories(include)
 
 # Encontra todos os arquivos de header e implementação
-file(GLOB_RECURSE GENERICS "include/*.h")
-file(GLOB_RECURSE IMPLEMENTATIONS "include/impel/*.c")
+file(GLOB_RECURSE HEADERS "include/*.h")
+file(GLOB_RECURSE C_FILES "include/*.c")
+# file(GLOB_RECURSE IMPLEMENTATIONS "include/impel/*.c")
 file(GLOB_RECURSE SOURCES "src/*.c")
 
 # Cria o executável
-add_executable(runnable ${GENERICS} ${IMPLEMENTATIONS} ${SOURCES})
+add_executable(runnable ${HEADERS} ${C_FILES} ${SOURCES})
 
 # Define as propriedades do executável (nome, versão, diretório de saída)
 set_target_properties(runnable PROPERTIES 
