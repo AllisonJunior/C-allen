@@ -190,12 +190,13 @@ void put_lines ( const int _times );
 
 /*
 >=================================================================================================================================================================================================<
- Function Description: ""
+ Function Description: "Prints a formated string, based on the second <optional> parameter."
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
- @param-1: 
+ @param-1: String value that will be printed on the console.
+ @param-2: <optional> String value that will format the previous string and print it.
 >=================================================================================================================================================================================================<
 $*/
-void putf ( const char * restrict string_text , ... );
+void put_format ( const char * _string , ... );
 
 
 

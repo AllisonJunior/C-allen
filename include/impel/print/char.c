@@ -10,6 +10,15 @@ LICENSE
 # include "../../allen.h"
 
 /* =============================================================================================== */
+/*
+   [ PRE-PROCESSORS USED ON THIS FILE ]
+   
+   {
+    defined name  : "inc_for"
+    implementation: "for ( int kaj = 0 ; kaj < size ; kaj ++ )"
+   }
+*/
+/* =============================================================================================== */
 
 # include <stdio.h>
 
@@ -20,8 +29,8 @@ LICENSE
 // PRINTS A CHAR VALUE ON THE CONSOLE 'n' TIMES //  
 void putChar ( const char _value , const int _times )
 {
-    for ( uint kaj = 0 ; kaj < _times ; kaj ++ )
-       printf ( "%c" , _value );
+    inc_for ( _times )
+           printf ( "%c" , _value );
 }
 
 
