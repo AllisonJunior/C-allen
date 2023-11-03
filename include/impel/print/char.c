@@ -12,6 +12,7 @@ LICENSE
 /* =============================================================================================== */
 
 # include <stdio.h>
+# include <stdarg.h>
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= //
 
@@ -20,8 +21,9 @@ LICENSE
 // PRINTS A CHAR VALUE ON THE CONSOLE 'n' TIMES //  
 void putChar ( const char _value , const int _times )
 {
-    inc_for ( _times )
-           printf ( "%c" , _value );
+    //* Simple Error handling
+    if ( _times > 0 )
+      inc_for ( _times ) printf ( "%c" , _value );
 }
 
 
