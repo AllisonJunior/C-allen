@@ -6,8 +6,6 @@ param
      [string] $msg
 )
 
-
-
 # COMPILAÇÃO E EXECUÇÃO DO PROGRAMA #
 if ( $action -eq "compile" -or $action -eq "c" -or $action -eq "C" ) 
 {
@@ -99,6 +97,8 @@ elseif ( $action -eq "commit" -and $msg -ne $null )
       git push -u origin main
 }
 
+
+
 # ABRIR O GITHUB # 
 elseif ( $action -eq "github" )
 {
@@ -111,5 +111,12 @@ elseif ( $action -eq "github" )
 # ERRO NA PASSAGEM DE PARÂMETROS #
 else 
 {
-    Write-Output "Insira algum parâmetro válido."
+# Define a string com acentuação
+$stringComAcentuacao = "Acentuação"
+
+# Configura a codificação do console para UTF-8
+[console]::InputEncoding = [console]::OutputEncoding = [System.Text.UTF8Encoding]::new()
+
+# Escreve a string com acentuação
+Write-Output $stringComAcentuacao
 }

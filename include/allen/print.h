@@ -56,7 +56,7 @@ void putInt_barray ( const int _lines , const int _cols , const int _barray [ _l
  Function Description: "Prints an char value or variable to the console."
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
  @param-1: A variable of type 'char' that will have it's value printed on the console.
- @param-2: <optional> A variable of type 'char *' that will set how many times the variable defined before will be printed on the console.
+ @param-2: A variable of type 'int' that will set how many times the variable defined before will be printed on the console.
 >=================================================================================================================================================================================================< 
 $*/
 void putChar ( const char _value , const int _times );
@@ -190,13 +190,13 @@ void put_lines ( const int _times );
 
 /*
 >=================================================================================================================================================================================================<
- Function Description: "Prints a formated string, based on the second <optional> parameter."
+ Function Description: "Printf function buffed"
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
  @param-1: String value that will be printed on the console.
  @param-2: <optional> String value that will format the previous string and print it.
 >=================================================================================================================================================================================================<
 $*/
-void put_format ( const char * _string , ... );
+void putf ( const char * _string , ... );
 
 
 

@@ -18,5 +18,5 @@ wsl
 cmake .
 make
 cd bin
-./runnable
+./runnable  
 ```
