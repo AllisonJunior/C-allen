@@ -42,7 +42,7 @@ void put_lines ( const int _times )
 void putf ( const char * _string , ... )
 {   
     va_list args;
-    va_start ( args , _string );
+    va_start ( args , _string ); 
     char * init , * endt;
 
     while ( * _string )
@@ -53,11 +53,13 @@ void putf ( const char * _string , ... )
 
            switch ( * _string )
            {     
-                 //* Default Data Types 
+                 //* int
                  case 'i': 
+                          // Write the 'int' value
                           printf ( "%d" , va_arg ( args , int ) );     
                  break;
-
+                 
+                 //* double
                  case 'd':
                           init = strchr ( _string , '<' );
                           endt = strchr ( _string , '>' );
@@ -69,24 +71,29 @@ void putf ( const char * _string , ... )
                             strncpy ( format , init + 1 , length );
                             format [ length ] = '\0';
 
-                            int commas = atoi ( format );
-                            printf ( "%.*lf" , commas , va_arg ( args , double ) ); 
+                            printf ( "%.*lf" , atoi ( format ) , va_arg ( args , double ) ); 
 
                             _string += length + 2;
                           }
                           else 
                               printf ( "%lf" , va_arg ( args , double ) );
                  break;
-
+                
+                 //* float
                  case 'f': 
+                          // Write the 'float' value
                           printf ( "%f" , va_arg ( args , double ) );  
                  break;
-
+                 
+                 //* char
                  case 'c': 
+                          // Write the 'char' value
                           printf ( "%c" , va_arg ( args , int ) );     
                  break;
-
+                 
+                 //* string ( char * )
                  case 's': 
+                          // Write the 'string' value
                           printf ( "%s" , va_arg ( args , char * ) );  
                  break;
 
