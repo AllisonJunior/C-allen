@@ -43,7 +43,8 @@ void putf ( const char * _string , ... )
 {   
     va_list args;
     va_start ( args , _string ); 
-    char * init , * endt;
+
+    int count = 0;
 
     while ( * _string )
     {
@@ -61,22 +62,8 @@ void putf ( const char * _string , ... )
                  
                  //* double
                  case 'd':
-                          init = strchr ( _string , '<' );
-                          endt = strchr ( _string , '>' );
-
-                          if ( ( init != NULL ) && ( endt != NULL ) )
-                          {
-                            size_t length = endt - init - 1;
-                            char format [ length + 1 ];
-                            strncpy ( format , init + 1 , length );
-                            format [ length ] = '\0';
-
-                            printf ( "%.*lf" , atoi ( format ) , va_arg ( args , double ) ); 
-
-                            _string += length + 2;
-                          }
-                          else 
-                              printf ( "%lf" , va_arg ( args , double ) );
+                          // Write the 'double' value
+                          printf ( "%lf" , va_arg ( args , double ) );
                  break;
                 
                  //* float
@@ -102,7 +89,7 @@ void putf ( const char * _string , ... )
                  default: printf ( "@" );  break;
            }
          }
-         else printf ( "%c" , * _string );
+         // else printf ( "%c" , * _string );
          
          _string ++;
     }

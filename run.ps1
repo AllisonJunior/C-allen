@@ -17,10 +17,12 @@ if ( $action -eq "compile" -or $action -eq "c" -or $action -eq "C" )
   if ( -not [string]::IsNullOrWhiteSpace($msg) ) 
   {
     .\bin\runnable.exe $msg
+    Write-Output "`n"
   } 
   else 
   {
       .\bin\runnable.exe
+      Write-Output "`n"
   }
 
 }
@@ -32,11 +34,13 @@ elseif ( $action -eq "r" )
       {
         Write-Output "`nExecutando o programa com argumentos adicionais...`n"
         .\bin\runnable.exe $msg
+        Write-Output "`n"
       }
       else 
       {    
           Write-Output "`nExecutando o programa sem argumentos adicionais...`n"
           .\bin\runnable.exe
+          Write-Output "`n"
       }
 }
 
@@ -51,11 +55,13 @@ elseif ( $action -eq "cout" )
       {
         Write-Output "`nExecutando com argumentos adicionais...`n"
         Start-Process -FilePath ".\bin\runnable.exe" -ArgumentList $msg
+        Write-Output "`n"
       } 
       else 
       {
           Write-Output "`nExecutando sem argumentos adicionais...`n"
           Start-Process -FilePath ".\bin\runnable.exe"
+          Write-Output "`n"
       }
 
 }
@@ -112,6 +118,7 @@ elseif ( $action -eq "commit" -and $msg -ne $null )
 
       Write-Output "* Pushing para o repositório remoto...`n"
       git push -u origin main
+      Write-Output ""
 }
 
 
