@@ -1,4 +1,4 @@
-# Parametros de Chamada #
+﻿# Parametros de Chamada #
 param
 (
      [string] $action
@@ -8,22 +8,34 @@ param
 
 # COMPILAÇÃO E EXECUÇÃO DO PROGRAMA #
 if ( $action -eq "compile" -or $action -eq "c" -or $action -eq "C" ) 
-{
+{  
   Write-Output "* Compilando e rodando a aplicação..."  
   cmake -G "MinGW Makefiles" .
   cmake --build .
   
-  if (-not [string]::IsNullOrWhiteSpace($msg)) 
+  if ( -not [string]::IsNullOrWhiteSpace($msg) ) 
   {
-        .\bin\runnable.exe $msg
+    .\bin\runnable.exe $msg
   } 
   else 
   {
-        .\bin\runnable.exe
+      .\bin\runnable.exe
   }
 
 }
 
+# RODAR A APLICAÇÃO #
+elseif ( $action -eq "r" )
+{
+      if ( -not [string]::IsNullOrWhiteSpace($msg) )
+      {
+        .\bin\runnable.exe $msg
+      }
+      else 
+      {
+          .\bin\runnable.exe
+      }
+}
 
 # COMPILAÇÃO DO PROGRAMA FORA DESSE CONSOLE  #
 elseif ( $action -eq "cout" ) 
@@ -32,7 +44,7 @@ elseif ( $action -eq "cout" )
       cmake -G "MinGW Makefiles" .
       cmake --build .
   
-      if (-not [string]::IsNullOrWhiteSpace($msg)) 
+      if ( -not [string]::IsNullOrWhiteSpace($msg) ) 
       {
         Start-Process -FilePath ".\bin\runnable.exe" -ArgumentList $msg
       } 
@@ -111,12 +123,5 @@ elseif ( $action -eq "github" )
 # ERRO NA PASSAGEM DE PARÂMETROS #
 else 
 {
-# Define a string com acentuação
-$stringComAcentuacao = "Acentuação"
-
-# Configura a codificação do console para UTF-8
-[console]::InputEncoding = [console]::OutputEncoding = [System.Text.UTF8Encoding]::new()
-
-# Escreve a string com acentuação
-Write-Output $stringComAcentuacao
+    echo "Acentuação"  
 }
