@@ -9,9 +9,10 @@ param
 # COMPILAÇÃO E EXECUÇÃO DO PROGRAMA #
 if ( $action -eq "compile" -or $action -eq "c" -or $action -eq "C" ) 
 {  
-  Write-Output "* Compilando e rodando a aplicação..."  
+  Write-Output "`n* Compilando e rodando a aplicação..."  
   cmake -G "MinGW Makefiles" .
   cmake --build .
+  Write-Output ""
   
   if ( -not [string]::IsNullOrWhiteSpace($msg) ) 
   {
@@ -29,10 +30,12 @@ elseif ( $action -eq "r" )
 {
       if ( -not [string]::IsNullOrWhiteSpace($msg) )
       {
+        Write-Output "`nExecutando o programa com argumentos adicionais...`n"
         .\bin\runnable.exe $msg
       }
       else 
-      {
+      {    
+          Write-Output "`nExecutando o programa sem argumentos adicionais...`n"
           .\bin\runnable.exe
       }
 }
@@ -40,16 +43,18 @@ elseif ( $action -eq "r" )
 # COMPILAÇÃO DO PROGRAMA FORA DESSE CONSOLE  #
 elseif ( $action -eq "cout" ) 
 {
-      Write-Output "* Compilando e rodando a aplicação por fora..."  
+      Write-Output "`n* Compilando e rodando a aplicação externamente..."  
       cmake -G "MinGW Makefiles" .
       cmake --build .
   
       if ( -not [string]::IsNullOrWhiteSpace($msg) ) 
       {
+        Write-Output "`nExecutando com argumentos adicionais...`n"
         Start-Process -FilePath ".\bin\runnable.exe" -ArgumentList $msg
       } 
       else 
       {
+          Write-Output "`nExecutando sem argumentos adicionais...`n"
           Start-Process -FilePath ".\bin\runnable.exe"
       }
 
@@ -60,7 +65,7 @@ elseif ( $action -eq "cout" )
 # LIMPEZA DE ARQUIVOS DESNECESSÁRIOS #
 elseif ( $action -eq "clear" )
 {
-      Write-Output "* Limpando Arquivos Desnecessários..."
+      Write-Output "`n* Limpando Arquivos Desnecessários...`n"
       Remove-Item -Path "CMakeFiles" -Recurse
       Remove-Item -Path "cmake_install.cmake"
       Remove-Item -Path "CMakeCache.txt"
@@ -79,12 +84,12 @@ elseif ( $action -eq "commit" -and $msg -ne $null )
       # Verifica se há arquivos para remover
       if ( $arquivosParaRemover.Count -gt 0 ) 
       {
-        Write-Output "* Excluíndo os arquivos..."
+        Write-Output "`n* Excluíndo os arquivos..."
         Remove-Item -Path $arquivosParaRemover -Recurse -Force
       }
       else 
       {
-        Write-Output "* Os arquivos não existem. Nenhuma ação necessária."
+        Write-Output "`n* Os arquivos não existem. Nenhuma ação necessária."
       }
 
       Write-Output "* Adicionando arquivos ao commit..."
@@ -105,7 +110,7 @@ elseif ( $action -eq "commit" -and $msg -ne $null )
       Write-Output "* Adicionando controle remoto..."
       git remote add origin https://github.com/AllisonJunior/C-allen.git
 
-      Write-Output "* Pushing para o repositório remoto..."
+      Write-Output "* Pushing para o repositório remoto...`n"
       git push -u origin main
 }
 
@@ -114,6 +119,7 @@ elseif ( $action -eq "commit" -and $msg -ne $null )
 # ABRIR O GITHUB # 
 elseif ( $action -eq "github" )
 {
+      Write-Output "`n* Abrindo o repositório oficial!`n"
       Start-Process "https://github.com/AllisonJunior/C-allen"
 }
 
@@ -123,5 +129,5 @@ elseif ( $action -eq "github" )
 # ERRO NA PASSAGEM DE PARÂMETROS #
 else 
 {
-    echo "Acentuação"  
+    Write-Output "`n* Insira um parâmetro válido!"  
 }
