@@ -8,6 +8,7 @@ LICENSE
 
 # include "../../allen/print.h"
 # include "../../allen/props.h"
+# include "../../allen/simple.h"
 
 /* =============================================================================================== */
 
@@ -38,65 +39,177 @@ void put_lines ( const int _times )
 }
 
 
-// PRINTF FUNCTION BUFFED WITH NEW DATA TYPES AND FORMATING OPTIONS //
+// REDEFINED PRINTF WITH NEW DATA TYPES //
 void putf ( const char * _string , ... )
 {   
     va_list args;
     va_start ( args , _string ); 
 
-    int count = 0;
+    //* Chars *, used for check for '<>' 
+    char * init , * endt;
 
+    //* Char Print Loop 
     while ( * _string )
-    {
+    {    
+         //* Checking if the '@' was writed
          if ( * _string == '@' )
          {
            _string ++;
 
            switch ( * _string )
            {     
-                 //* int
-                 case 'i': 
-                          // Write the 'int' value
-                          printf ( "%d" , va_arg ( args , int ) );     
+                 //* @i <- int //
+                 case 'i':
+                          //* Check the Parameters
+                          init = strchr ( _string , '<' );
+                          endt = strchr ( _string , '>' );
+                          
+
+                          //* Check if they are '!=' of NULL
+                          if ( ( init != NULL ) && ( endt != NULL ) && ( init < endt ) )
+                          {
+                            init ++; 
+
+                            //* Set some support variables 
+                            int length = endt - init , fill_with_zeros = 0 , count = 0;
+                            char buffer [ length + 1 ] , value [ length + 1 ];
+                            
+                            //* Copy to 'buffer' the text within the '<>'
+                            strncpy ( buffer , init , length );                            
+                            buffer [ length ] = '\0';
+                            _string = endt;
+
+                            //* Writes on 'value' all the integer values  
+                            for ( int kaj = 0 ; kaj < length ; kaj ++ )
+                               if ( ( buffer [ kaj ] >= '0' ) && ( buffer [ kaj ] <= '9' ) || buffer [ kaj ] == '-' )
+                               {
+                                 value [ count ] = buffer [ kaj ];
+                                 count ++;
+                               }
+                            value [ count ] = '\0';   
+
+                            //* Checks on 'buffer' if 'z' exists 
+                            for ( int kaj = 0 ; kaj < length ; kaj ++ )                       
+                               if ( buffer [ kaj ] == 'z' ) { fill_with_zeros = 1; break; }
+                            
+                            //* Print normal spacement or zero fillment
+                            if ( fill_with_zeros == 0 ) printf ( "%*d" , atoi ( value ) , va_arg ( args , int ) );
+                            else                        printf ( "%0*d" , atoi ( value ) , va_arg ( args , int ) );
+                          }
+                          else 
+                              printf ( "%d" , va_arg ( args , int ) );     
                  break;
                  
-                 //* double
+
+                 //* @d <- double //
                  case 'd':
-                          // Write the 'double' value
-                          printf ( "%lf" , va_arg ( args , double ) );
+                          //* Check if "<>" exists
+                          init = strchr ( _string , '<' );
+                          endt = strchr ( _string , '>' );
+                          
+
+                          //* Process of checking the argument
+                          if ( ( init != NULL ) && ( endt != NULL ) && ( init < endt ) )
+                          {
+                            init ++; 
+
+                            int length = endt - init;
+                            char buffer [ length + 1 ];
+
+                            strncpy ( buffer , init , length );
+
+                            buffer [ length ] = '\0';
+                            _string = endt;
+
+                            printf ( "%.*lf" , atoi ( buffer ) , va_arg ( args , double ) );
+                          }
+                          else 
+                              printf ( "%lf" , va_arg ( args , double ) );                    
                  break;
                 
-                 //* float
-                 case 'f': 
-                          // Write the 'float' value
-                          printf ( "%f" , va_arg ( args , double ) );  
+
+                 //* @f <- float //
+                 case 'f':
+                          //* Check if "<>" exists
+                          init = strchr ( _string , '<' );
+                          endt = strchr ( _string , '>' );
+                          
+
+                          //* Process of checking the argument
+                          if ( ( init != NULL ) && ( endt != NULL ) && ( init < endt ) )
+                          {
+                            init ++; 
+
+                            int length = endt - init;
+                            char buffer [ length + 1 ];
+
+                            strncpy ( buffer , init , length ); 
+                            
+                            buffer [ length ] = '\0';
+                            _string = endt;
+
+                            printf ( "%.*f" , atoi ( buffer ) , va_arg ( args , double ) );
+                          }
+                          else 
+                              printf ( "%f" , va_arg ( args , double ) );
                  break;
                  
-                 //* char
+
+                 //* @c <- char //
                  case 'c': 
                           // Write the 'char' value
                           printf ( "%c" , va_arg ( args , int ) );     
                  break;
                  
-                 //* string ( char * )
+
+                 //* @s <- char * ( string ) //
                  case 's': 
                           // Write the 'string' value
                           printf ( "%s" , va_arg ( args , char * ) );  
                  break;
+                 
 
-                 //* Random
+                 //* @e <- exponential floating-point number //
+                 case 'e': 
+                 break;
+
+
+                 //* @o <- octal number // 
+                 case 'o': 
+                 break; 
+
+
+                 //* @x <- hexadecimal number // 
+                 case 'x': 
+                 break;                 
+        
+
+                 //* Random //
                  case '@': printf ( "@" ); break;
                  default: printf ( "@" );  break;
            }
          }
-         // else printf ( "%c" , * _string );
+         
+         //* ASCII FIX ON WINDOWS 
+         # if defined ( _WIN32 ) || defined ( _WIN64 )
+
+         else if ( * _string == -61 )
+         {
+             * _string ++;
+             printf ( "%c" , check_ascii_chars ( * _string ) );
+         }
+          	  
+         # endif 
+        
+          
+         //* If the '%c' is not '@' print anyway
+         else printf ( "%c" , * _string );
+         
          
          _string ++;
     }
      
     va_end ( args );
 }
-
-
 
 
