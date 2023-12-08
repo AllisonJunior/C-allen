@@ -190,13 +190,13 @@ void put_lines ( const int _times );
 
 /*
 >=================================================================================================================================================================================================<
- Function Description: "Printf function buffed"
+ Function Description: "Printf function with some reorganizations and overall buff ( not only the rework of it's use but the print of new data types of this library will be included )"
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
- @param-1: String value that will be printed on the console.
- @param-2: <optional> String value that will format the previous string and print it.
+ @param-1: String format value that will be printed on the console.
+ @param-2: <optional> Args ( char * , int , double etc. ) used like printf.
 >=================================================================================================================================================================================================<
 $*/
-void putf ( const char * _string , ... );
+int putf ( const char * _format , ... );
 
 
 

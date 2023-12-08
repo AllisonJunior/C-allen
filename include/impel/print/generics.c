@@ -5,22 +5,51 @@ LICENSE
 
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= //
+/* ==> ALLEN HEADERS                                                                                 */
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= //
 
 # include "../../allen/print.h"
 # include "../../allen/props.h"
 
 /* =============================================================================================== */
-
-# include <stdio.h>
-# include <stdarg.h>
-# include <string.h>
-# include <stdlib.h>
-
+/* ==> DEFAULT HEADERS                                                                             */
 /* =============================================================================================== */
 
-static char convert_ascii ( const char check );
+# include <stdio.h>
+# include <stdlib.h>
+# include <stdarg.h>
+# include <stdbool.h>
+# include <string.h>
+
+/* =============================================================================================== */
+/* ==> EXCLUSIVE SUPPORT FUNCTIONS                                                                 */
+/* =============================================================================================== */
+
+// This function receives a broken char and returns a working correspondent ascii char //
+static inline char EX_ascii_conversion ( const char _broken_char );
+
+
+// This function receives a char to check if it's true or false and returns the result //
+static inline bool EX_is_a_valid_type ( char _check );
+
+
+// This function basically check if the user passed a argument on the '_format' usage //
+static inline int EX_has_a_param ( const char * _format ); 
+
+
+// This function basically returns the param string //
+static inline char * EX_get_param ( char * _init , char * _endt , const char * _format );
+
+
+// This function basically handle the process of variable formating //
+static inline void EX_param_handler ( char * _format , int _type );
+
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= //
+
+
+
+// >> ALLEN FUNCTIONS << //
 
 
 
@@ -42,190 +71,142 @@ void put_lines ( const int _times )
 }
 
 
-// REDEFINED PRINTF WITH NEW DATA TYPES //
-void putf ( const char * _string , ... )
-{   
+// BUFFED PRINTF ( NEW SYNTAX, NEW DATA TYPES, NEW MASKS ) //
+int putf ( const char * _format , ... )
+{
+    // Initial data
     va_list args;
-    va_start ( args , _string ); 
+    va_start ( args , _format );
+    char * init , * endt , * final;
 
-    //* Chars *, used for check for '<>' 
-    char * init , * endt;
+    int __spaces__ = 0;
 
-    //* Char Print Loop 
-    while ( * _string )
-    {    
-         //* Checking if the '@' was writed
-         if ( * _string == '@' )
+    // STRING CHECKING LOOP // 
+    while ( * _format )
+    {
+         // Primitive Types
+         if ( * _format == '@' )
          {
-           _string ++;
-
-           switch ( * _string )
-           {     
-                 //* @i <- int //
-                 case 'i': 
-                          //* Check the Parameters
-                          init = strchr ( _string , '<' );
-                          endt = strchr ( _string , '>' );
-                          
-
-                          //* Check if they are '!=' of NULL
-                          if ( ( init != NULL ) && ( endt != NULL ) && ( init < endt ) )
-                          {
-                            init ++; 
-
-                            //* Set some support variables 
-                            int length = endt - init , fill_with_zeros = 0 , count = 0;
-                            char buffer [ length + 1 ] , value [ length + 1 ];
-                            
-                            //* Copy to 'buffer' the text within the '<>'
-                            strncpy ( buffer , init , length );                            
-                            buffer [ length ] = '\0';
-                            _string = endt;
-
-                            //* Writes on 'value' all the integer values  
-                            for ( int kaj = 0 ; kaj < length ; kaj ++ )
-                               if ( ( buffer [ kaj ] >= '0' ) && ( buffer [ kaj ] <= '9' ) || buffer [ kaj ] == '-' )
+           _format ++;
+           // Checking if the type after '@' is valid and then executing the case of it
+           if ( EX_is_a_valid_type ( * _format ) ) switch ( * _format )
+           {
+             // int
+             case 'i':
+                      // Checking if the user passed a param or not 
+                      if ( -1 < ( __spaces__ = EX_has_a_param ( _format ) ) )
+                      {
+                        // Getting the param passed
+                        final = EX_get_param ( init , endt , _format );
+                        
+                        // Fixing the position
+                        _format += __spaces__;
+                        _format += strlen ( final ) - 1;
+                        
+                        // Support variables
+                        char converted [ strlen ( final ) + 1 ];
+                        int count = 0 , has_zero = 0 , has_ternary = 0;
+                        
+                        // Checking if the zero flag will be activated
+                        for ( int kaj = 1 ; kaj < strlen ( final ) - 1 ; kaj ++ )
+                           if ( ( final [ kaj ] == 'z' ) || ( final [ kaj ] == 'Z' ) ) { has_zero = 1; break; }
+                        
+                        // Flag Checking
+                        if ( has_zero )
+                        {
+                          if ( ! has_ternary )
+                            for ( int kaj = 1 ; kaj < strlen ( final ) - 1 ; kaj ++ )                          
+                               if ( ( final [ kaj ] >= '0' ) && ( final [ kaj ] <= '9' ) )
                                {
-                                 value [ count ] = buffer [ kaj ];
+                                 converted [ count ] = final [ kaj ];
                                  count ++;
                                }
-                            value [ count ] = '\0';   
+                               else if ( has_ternary ) break;
+                        }
+                        else if ( ! has_zero )
+                        {
+                            for ( int kaj = 1 ; kaj < strlen ( final ) - 1 ; kaj ++ )                          
+                               if ( ( final [ kaj ] >= '0' ) && ( final [ kaj ] <= '9' ) || ( final [ kaj ] == '-' ) )
+                               {
+                                 converted [ count ] = final [ kaj ];
+                                 count ++;
+                               }
+                               else if ( has_ternary ) break;
+                        }
+                        converted [ count ] = '\0';
 
-                            //* Checks on 'buffer' if 'z' exists 
-                            for ( int kaj = 0 ; kaj < length ; kaj ++ )                       
-                               if ( buffer [ kaj ] == 'z' ) { fill_with_zeros = 1; break; }
-                            
-                            //* Print normal spacement or zero fillment
-                            if ( fill_with_zeros == 0 ) printf ( "%*d" , atoi ( value ) , va_arg ( args , int ) );
-                            else                        printf ( "%0*d" , atoi ( value ) , va_arg ( args , int ) );
-                          }
-                          else 
-                              printf ( "%d" , va_arg ( args , int ) ); 
-                 break;
-                 
-
-                 //* @d <- double //
-                 case 'd':
-                          //* Check if "<>" exists
-                          init = strchr ( _string , '<' );
-                          endt = strchr ( _string , '>' );
-                          
-
-                          //* Process of checking the argument
-                          if ( ( init != NULL ) && ( endt != NULL ) && ( init < endt ) )
-                          {
-                            init ++; 
-
-                            int length = endt - init;
-                            char buffer [ length + 1 ];
-
-                            strncpy ( buffer , init , length );
-
-                            buffer [ length ] = '\0';
-                            _string = endt;
-
-                            printf ( "%.*lf" , atoi ( buffer ) , va_arg ( args , double ) );
-                          }
-                          else 
-                              printf ( "%lf" , va_arg ( args , double ) );                    
-                 break;
-                
-
-                 //* @f <- float //
-                 case 'f':
-                          //* Check if "<>" exists
-                          init = strchr ( _string , '<' );
-                          endt = strchr ( _string , '>' );
-                          
-
-                          //* Process of checking the argument
-                          if ( ( init != NULL ) && ( endt != NULL ) && ( init < endt ) )
-                          {
-                            init ++; 
-
-                            int length = endt - init;
-                            char buffer [ length + 1 ];
-
-                            strncpy ( buffer , init , length ); 
-                            
-                            buffer [ length ] = '\0';
-                            _string = endt;
-
-                            printf ( "%.*f" , atoi ( buffer ) , va_arg ( args , double ) );
-                          }
-                          else 
-                              printf ( "%f" , va_arg ( args , double ) );
-                 break;
-                 
-
-                 //* @c <- char //
-                 case 'c': 
-                          // Write the 'char' value
-                          printf ( "%c" , va_arg ( args , int ) );     
-                 break;
-                 
-
-                 //* @s <- char * ( string ) //
-                 case 's': 
-                          // Write the 'string' value
-                          printf ( "%s" , va_arg ( args , char * ) );  
-                 break;
-                 
-
-                 //* @e <- exponential floating-point number //
-                 case 'e':
-                          printf ( "%e" , va_arg ( args , double ) );
-                 break;
+                        // User passed a value with zero
+                        if ( has_zero ) printf ( "%0*d" , atoi ( converted ) , va_arg ( args , int ) );
+                        else            printf ( "%*d" , atoi ( converted ) , va_arg ( args , int ) );  
+                      }
+                      else   
+                          printf ( "%d" , va_arg ( args , int ) );
+             break;
 
 
-                 //* @o <- octal number // 
-                 case 'o':
-                          printf ( "%o" , va_arg ( args , double ) );
-                 break; 
+             // char
+             case 'c':
+                      if ( -1 < ( __spaces__ == EX_has_a_param ( _format ) ) )
+                      {
 
-
-                 //* @x <- hexadecimal number // 
-                 case 'x': 
-                 break;                 
-        
-
-                 //* Random //
-                 case '@': printf ( "@" ); break;
-                 default:  printf ( "%c" , * _string );  break;
+                      }
+                      else printf ( "%c" , va_arg ( args , int ) );
+             break;
+           }
+           // If the type isn't valid then just print the char or chars
+           else
+           {
+               _format --; printf ( "%c" , * _format );
+               _format ++; printf ( "%c" , * _format );
            }
          }
-         
-         //* ASCII FIX ON WINDOWS 
+
+
+         // Primitive Types: Array
+         else if ( * _format == '#' )
+         {
+         }
+
+
+         // Primitive Types: Bidimensional Array
+         else if ( * _format == '$' )
+         {
+         }
+
+
+         // C-Allen types:
+         else if ( * _format == '%' )
+         {
+         }
+
          # if defined ( _WIN32 ) || defined ( _WIN64 )
 
-          else if ( * _string == -61 )
-          {
-              * _string ++;
-              printf ( "%c" , convert_ascii ( * _string ) );
-          }
+         else if ( * _format == -61 )
+         {
+              _format ++;
+              printf ( "%c" , EX_ascii_conversion ( * _format ) );
+         }
 
          # endif 
-        
-          
-         //* If the '%c' is not '@' print anyway
-         else printf ( "%c" , * _string );
+
+
+         // PRINT ANY EXPECTED CHAR
+         else printf ( "%c" , * _format );
          
-         
-         _string ++;
+         _format ++;
     }
-     
-    va_end ( args );
 }
 
 
 
-// EXCLUSIVE FUNCTIONS //
+// >> EXCLUSIVE FUNCTIONS << //
 
 
-// CHECK FOR THE ESPECIFIC CHAR AND PRINT // 
-static char convert_ascii ( const char _check )
+
+// ASCII TABLE OF BROKEN CHARS // 
+static inline char EX_ascii_conversion ( const char _broken_char )
 {   
-    switch ( _check )
+    switch ( _broken_char )
     {     
           // 'A' cases //
           case -93:  return 198; //* ã
@@ -293,4 +274,66 @@ static char convert_ascii ( const char _check )
 
           // Random Chars //          
     }
+}
+
+// CHECKS IF THE CHAR PASSED IS VALID // 
+static inline bool EX_is_a_valid_type ( char _check )
+{     
+      switch ( _check )
+      {
+            case 'i': return true;
+            case 'c': return true;
+            case 'f': return true;
+            case 'd': return true;
+            case 's': return true;
+            default: return false;
+      }       
+}
+
+// CHECK IF THE USER PASSED A ARGUMENT // 
+static inline int EX_has_a_param ( const char * _format )
+{     
+      // Getting the args
+      char * init = strchr ( _format , '<' );
+      char * endt = strchr ( _format , '>' );
+ 
+      // Variable used to return
+      int return_spaces = 0;
+ 
+      // If then isn't null then return the size finded of '<'
+      if ( ( NULL != init ) && ( NULL != endt ) && ( init < endt ) )
+      {
+        while ( * _format != '<' ) { * _format ++; return_spaces ++; }
+        return return_spaces;
+      }
+
+      else return -1;
+}
+
+// RETURNS THE PARAM CONTENT //
+static inline char * EX_get_param ( char * _init , char * _endt , const char * _format )
+{
+      // Getting the args
+      _init = strchr ( _format , '<' );
+      _endt = strchr ( _format , '>' );
+      
+      // Returnable Buffer
+      char * buffer;     
+
+      // If is not NULL for both
+      if ( ( NULL != _init ) && ( NULL != _endt ) && ( _init < _endt ) )
+      {        
+        // Support Variables
+        int length = ( _endt - _init ) + 1;
+        buffer = ( char * ) malloc ( sizeof ( char ) * ( length ) );
+
+        // Copy to 'i_buffer' the text within the '<' and '>'
+        strncpy ( buffer , _init , length );
+        buffer [ length ] = '\0';
+        
+        // Returning the full string jump size
+        return buffer;
+      }
+
+      else return NULL;
 }
